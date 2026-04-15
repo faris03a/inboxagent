@@ -1,26 +1,121 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Manrope", sans-serif;
+  background-color: #060e20;
+  color: #dee5ff;
+}
+
+h1,
+h2,
+h3,
+.font-headline,
+.plus-jakarta-sans,
+.headline-text {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.manrope {
+  font-family: "Manrope", sans-serif;
+}
+
+.glass-panel {
+  background: rgba(20, 36, 73, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-card {
+  background: linear-gradient(145deg, rgba(12, 25, 52, 0.7) 0%, rgba(8, 19, 41, 0.4) 100%);
+  backdrop-filter: blur(12px);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-family: "Material Symbols Outlined";
+}
+
+.text-glow,
+.glow-text {
+  text-shadow: 0 0 30px rgba(155, 221, 255, 0.3);
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 2rem;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 2rem;
+  padding: 1px;
+  background: linear-gradient(to right, #9bddff, #ffafd3);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+.tonal-transition {
+  transition: background-color 0.3s ease;
+}
+
+.no-line {
+  border: none !important;
+}
+
+.asymmetric-tilt {
+  transform: rotate(-1deg);
+}
+
+.asymmetric-accent {
+  transform: rotate(-2deg);
+}
+
+.glow-overlay {
+  background: radial-gradient(circle at center, rgba(155, 221, 255, 0.15) 0%, transparent 70%);
+}
+
+/* Rotating conic border for pricing highlight card */
+.rotating-border {
+  position: relative;
+  border-radius: 2rem;
+  padding: 2px;
+  isolation: isolate;
+  background: conic-gradient(from var(--angle), #9bddff, #ffafd3, #6bffc1, #9bddff);
+  animation: rotate-angle 6s linear infinite;
+}
+
+.rotating-border > .rotating-border-inner {
+  position: relative;
+  border-radius: calc(2rem - 2px);
+  background: #0c1934;
+  height: 100%;
+  width: 100%;
+}
+
+@keyframes rotate-angle {
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* Hide scrollbars on horizontal scrolling rails */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
